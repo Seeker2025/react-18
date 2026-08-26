@@ -9,24 +9,36 @@ import {
 
 export class Searchbar extends Component {
     state = {
-
+        value: '',
     };
+
+    handleChange = (e) => {
+        this.setState({ value: e.target.value })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        this.props.addToDo(this.state.value)
+    }
 
     render(){
         return (
             <HeaderSearchbar>
 
-                    <Form>
+                    <Form onSubmit = {this.handleSubmit}>
 
                         <ButtonForm type="submit">
-                            <span class="button-label"></span>
+                            <span></span>
                         </ButtonForm>
 
                         <InputForm
                         type="text"
-                        autocomplete="off"
-                        autofocus
+                        autoComplete="off"
+                        autoFocus
+                        value = {this.state.value}
                         placeholder="Search images and photos"
+                        onChange = {this.handleChange}
                         />
 
                     </Form>
