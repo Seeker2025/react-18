@@ -5,25 +5,44 @@ import { getNews } from 'components/fetch';
 
 export class ImgFinder extends Component{
     state = {
+        searchInput: null,
+        arr: [],
 
-    }
+    };
 
    
 
-    componentDidMount(){
-        getNews(1, 'cat')
-        .then(response => response.json()
-        .then(data => console.log(data)
-        )
-    )
+    // componentDidMount(){
+    //     getNews(1, 'cat')
+    //     .then(response => response.json()
+    //     .then(data => console.log(data)
+    //     )
+    // )
+    // }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevState.searchInput !== this.state.searchInput){
+        getNews(1,  this.state.searchInput)
+         .then(response => response.json())
+         .then(data =>{
+            console.log(data.hits)
+            this.setState({ arr: data.hits })
+            } 
+         )
+        }
+    }
+
+    addToDo = (val) => {
+        this.setState({ searchInput: val})
+
     }
     
 
     render(){
         return (
             <>
-                <Searchbar/>
-                <ImageGallery/>
+                <Searchbar addToDo={this.addToDo}/>
+                <ImageGallery arrHits = {this.state.arr}/>
             </>
             
         );

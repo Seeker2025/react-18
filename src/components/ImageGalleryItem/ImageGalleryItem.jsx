@@ -1,8 +1,12 @@
+import { ItemLi } from "./ImageGalleryItem.styled";  
+
 export const ImageGalleryItem = (props) =>{
 
 return (
-        <li>
-            <img src={props.im} alt="" />
-        </li>
+    
+        <ItemLi>
+            <img src={props.imgUrl} alt={props.tag} />
+        </ItemLi>
+        
     );
 }
