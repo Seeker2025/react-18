@@ -4,9 +4,7 @@ import { GalleryUl } from "./ImageGallery.styled";
 import { ImageGalleryItem } from "components/ImageGalleryItem";
 
 export class ImageGallery extends Component{
-    state = {
-    };
-
+    
     render(){
         const { arrHits } = this.props
 
@@ -14,9 +12,9 @@ export class ImageGallery extends Component{
         <>
             <GalleryUl>
                 {
-                    arrHits.map((itm)=>{
+                    arrHits?.map((itm)=>{
 
-                    console.log(itm);
+                    // console.log(itm);
                         
                     return <ImageGalleryItem 
                             key    = {itm.id}

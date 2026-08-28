@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Searchbar } from "components/Searchbar";
 import { ImageGallery } from "components/ImageGallery";
 import { getNews } from 'components/fetch';
+// import { Button } from "components/Button";
 
 export class ImgFinder extends Component{
     state = {
-        searchInput: null,
+        searchInput: '',
         arr: [],
 
     };
@@ -43,6 +44,7 @@ export class ImgFinder extends Component{
             <>
                 <Searchbar addToDo={this.addToDo}/>
                 <ImageGallery arrHits = {this.state.arr}/>
+                {/* <Button/> */}
             </>
             
         );
