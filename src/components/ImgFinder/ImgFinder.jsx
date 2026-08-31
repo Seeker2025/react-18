@@ -1,17 +1,20 @@
 import React, { Component } from "react";
-import { Searchbar } from "components/Searchbar";
-import { ImageGallery } from "components/ImageGallery";
-import { getNews } from 'components/fetch';
-import { Button } from "components/Button";
+import { Searchbar }        from "components/Searchbar";
+import { ImageGallery }     from "components/ImageGallery";
+import { getNews }          from 'components/fetch';
+import { Button }           from "components/Button";
+import { Loader }           from "components/Loader/";
+import { Error }            from "components/Error";
 
 import { BoxForButton } from "./ImgFinder.styled";
 
 export class ImgFinder extends Component{
     state = {
+        loader: false,
         searchInput: '',
         page: 1,
         arr: {
-            total: 0,
+            total: null,
             totalHits: 0,
             hits: [],
         },
@@ -34,17 +37,17 @@ export class ImgFinder extends Component{
         getNews(this.state.page, this.state.searchInput)
          .then(response => response.json())
          .then(data =>{
-            // console.log(data)
+            console.log(data)
             // console.log(data.hits)
             this.setState({ arr: data })
             } 
          )
+         .finally(()=>this.setState({loader: false}))
         }
     }
 
     addToDo = (val) => {
-        this.setState({ searchInput: val})
-
+        this.setState({ searchInput: val, loader: true })
     }
 
     toPlus = () =>{
@@ -59,7 +62,16 @@ export class ImgFinder extends Component{
         return (
             <>
                 <Searchbar addToDo={this.addToDo}/>
-                <ImageGallery arrHits = {this.state.arr.hits}/>
+
+                { 
+                this.state.arr.total === 0
+                && 
+                <Error>This is error</Error>
+                }
+
+                {
+                this.state.loader && <Loader/> }
+                <ImageGallery arrHits = { this.state.arr.hits }/>
                 <BoxForButton>
                 {
                 this.state.arr.hits.length > 0

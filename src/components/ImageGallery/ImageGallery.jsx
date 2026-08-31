@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import { GalleryUl } from "./ImageGallery.styled";
-import { ImageGalleryItem } from "components/ImageGalleryItem";
+import { GalleryUl          } from "./ImageGallery.styled";
+import { ImageGalleryItem   } from "components/ImageGalleryItem";
 
 export class ImageGallery extends Component{
     

@@ -20,6 +20,7 @@ export class Searchbar extends Component {
         e.preventDefault();
 
         this.props.addToDo(this.state.value)
+        this.setState({ value: '' })
     }
 
     render(){
