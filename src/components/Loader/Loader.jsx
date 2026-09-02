@@ -19,3 +19,5 @@ export const Loader = () =>{
     )
 
 }
+
+////// No needed any PropTypes here

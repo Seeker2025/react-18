@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
             Card
 
@@ -14,4 +16,8 @@ export const Error = ({ children }) =>{
             </div>
         </Card>
     )
+}
+
+Error.propTypes = {
+    children:PropTypes.string.isRequired
 }

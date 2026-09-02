@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { createPortal } from 'react-dom';
+import PropTypes from "prop-types";
 
 import { Overlay, ModalWin, ButtonClose } from "./Modal.styled";
 
 const modalRoot = document.querySelector('#modal-root');
 
 export class Modal extends Component {
-    state = {
-
-    };
+    
 
     componentDidMount(){
         window.addEventListener('keydown', this.toHandleEsc)
@@ -27,13 +26,21 @@ export class Modal extends Component {
         const { large, tags, toClose } = this.props
 
         return createPortal(
-            <Overlay>
-                <ModalWin >
+            <Overlay onClick = {toClose}>
+                <ModalWin onClick={e => e.stopPropagation()}>
                     <img src={large} alt={tags} />
+
+                    <ButtonClose onClick = {toClose}></ButtonClose>
                 </ModalWin>
-                <ButtonClose onClick = {toClose}></ButtonClose>
+                
             </Overlay>,
             modalRoot
         )
     }
+}
+
+Modal.propTypes = {
+    toClose: PropTypes.func.isRequired,
+    tags:    PropTypes.string.isRequired,
+    large:   PropTypes.string.isRequired
 }
