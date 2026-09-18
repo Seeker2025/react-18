@@ -26,7 +26,7 @@ export class ImageGallery extends Component{
 
     toggleModal = () => {
         this.setState(({visible})=>({
-            visible: ! visible
+            visible: !visible
         }))
     }
     
@@ -37,18 +37,17 @@ export class ImageGallery extends Component{
         <>
             <GalleryUl>
                 {
-                    arrHits?.map((itm)=>{
+                arrHits?.map((itm)=>{
 
-                    // console.log(itm);
+                // console.log(itm);
                         
-            return <ImageGalleryItem 
-                    
-                    key     =    {itm.id}
-                    imgUrl  =    {itm.webformatURL}
-                    tag     =    {itm.tags}
-                    onClick={() => this.getImg(itm.largeImageURL, itm.tags)}
-                    />
-                    })
+        return <ImageGalleryItem 
+                key     =    {itm.id}
+                imgUrl  =    {itm.webformatURL}
+                tag     =    {itm.tags}
+                onClick = {() => this.getImg(itm.largeImageURL, itm.tags)}
+                />
+                })
                 }
             {
                 this.state.visible
@@ -69,10 +68,10 @@ export class ImageGallery extends Component{
 ImageGallery.propTypes = {
     arrHits:PropTypes.arrayOf(
         PropTypes.shape({
-            id:      PropTypes.number.isRequired,
+            id:            PropTypes.number.isRequired,
             webformatURL:  PropTypes.string.isRequired,
-            tags:     PropTypes.string.isRequired,
-            largeImageURL:  PropTypes.string.isRequired,
+            tags:          PropTypes.string.isRequired,
+            largeImageURL: PropTypes.string.isRequired,
            
         }).isRequired
     ).isRequired

@@ -6,6 +6,7 @@ import {
             InputForm
 
         } from "./Searchbar.styled";
+import PropTypes from "prop-types";
 
 export class Searchbar extends Component {
     state = {
@@ -13,13 +14,18 @@ export class Searchbar extends Component {
     };
 
     handleChange = (e) => {
-        this.setState({ value: e.target.value })
+    this.setState({ value: e.target.value })
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        this.props.addToDo(this.state.value)
+    const value = this.state.value.trim();
+
+    if (!value) {
+        return;
+    }
+        this.props.addToDo(value)
         this.setState({ value: '' })
     }
 
@@ -47,4 +53,8 @@ export class Searchbar extends Component {
             </HeaderSearchbar>
         )
     }
+}
+
+Searchbar.propTypes = {
+    addToDo: PropTypes.func.isRequired,
 }
